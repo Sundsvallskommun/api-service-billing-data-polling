@@ -1,0 +1,32 @@
+openapi: "3.0.1"
+info:
+  version: 1.0
+  title: SMEX
+paths:
+  /SK_REFERENSNUMMER:
+    get:
+      summary: List all SK_REFERENSNUMMER
+      tags:
+        - SK_REFERENSNUMMER
+      responses:
+        200:
+          description: An array of SK_REFERENSNUMMER
+          content:
+            application/json:    
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SK_ReferensNummer"
+components:
+  schemas:
+    SK_ReferensNummer:
+      properties:
+        REFKOD_ID:
+          type: integer
+          format: int64
+        REFKOD:
+          type: string
+        ANV_NAMN:
+          type: string
+        BESKRIVNING:
+          type: string
