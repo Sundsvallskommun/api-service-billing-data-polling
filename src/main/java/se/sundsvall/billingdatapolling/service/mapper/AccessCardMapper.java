@@ -1,6 +1,6 @@
 package se.sundsvall.billingdatapolling.service.mapper;
 
-import static generated.se.sundsvall.billingpreprocessor.Status.CERTIFIED;
+import static generated.se.sundsvall.billingpreprocessor.Status.APPROVED;
 import static generated.se.sundsvall.billingpreprocessor.Type.INTERNAL;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.ObjectUtils.anyNull;
@@ -16,7 +16,6 @@ import generated.se.sundsvall.billingpreprocessor.AccountInformation;
 import generated.se.sundsvall.billingpreprocessor.BillingRecord;
 import generated.se.sundsvall.billingpreprocessor.Invoice;
 import generated.se.sundsvall.billingpreprocessor.InvoiceRow;
-import generated.se.sundsvall.billingpreprocessor.Status;
 import generated.se.sundsvall.billingpreprocessor.Type;
 import generated.se.sundsvall.smex.skreferensnummer.SKReferensNummer;
 import se.sundsvall.billingdatapolling.integration.db.model.AccessCardEntity;
@@ -28,8 +27,8 @@ public class AccessCardMapper {
 	static final float TOTAL_AMOUNT_WITHOUT_PHOTO = 150;
 	static final Type TYPE = INTERNAL;
 	static final String CATEGORY = "ACCESS_CARD";
+	static final String APPROVED_BY = "OeP";
 	static final String CUSTOMER_ID = "16";
-	static final Status STATUS = CERTIFIED;
 	static final String SUBACCOUNT = "936100";
 	static final String ACTIVITY = "5247000";
 	static final String DEPARTMENT = "910300";
@@ -54,7 +53,8 @@ public class AccessCardMapper {
 		return new BillingRecord()
 			.category(CATEGORY)
 			.type(TYPE)
-			.status(STATUS)
+			.status(APPROVED)
+			.approvedBy(APPROVED_BY)
 			.invoice(new Invoice()
 				.customerId(CUSTOMER_ID)
 				.ourReference(toOurReference(skReferensNummer))
