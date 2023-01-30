@@ -70,6 +70,5 @@ class OepGetInstanceConfigurationTest {
 		assertThat(requestInterceptorCaptor.getValue())
 			.isInstanceOf(RequestInterceptor.class)
 			.hasFieldOrPropertyWithValue("headerValue", "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()));
-
 	}
 }
