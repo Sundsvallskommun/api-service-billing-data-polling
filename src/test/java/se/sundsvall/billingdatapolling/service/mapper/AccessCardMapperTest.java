@@ -1,5 +1,6 @@
 package se.sundsvall.billingdatapolling.service.mapper;
 
+import static generated.se.sundsvall.billingpreprocessor.Status.APPROVED;
 import static java.lang.String.format;
 import static java.time.OffsetDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.zalando.problem.Status.INTERNAL_SERVER_ERROR;
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.UNPROCESSED;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.ACTIVITY;
+import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.APPROVED_BY;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.CATEGORY;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.COST_CENTER;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.CUSTOMER_ID;
@@ -17,7 +19,6 @@ import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.DE
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.DESCRIPTIONS_ROW_4_WITHOUT_PHOTO;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.DESCRIPTIONS_ROW_4_WITH_PHOTO;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.ERROR_MESSAGE_OBJECTS_MISSING;
-import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.STATUS;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.SUBACCOUNT;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.TOTAL_AMOUNT_WITHOUT_PHOTO;
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.TOTAL_AMOUNT_WITH_PHOTO;
@@ -62,9 +63,10 @@ class AccessCardMapperTest {
 
 		// Verification
 		assertThat(result).isNotNull();
+		assertThat(result.getApprovedBy()).isEqualTo(APPROVED_BY);
 		assertThat(result.getCategory()).isEqualTo(CATEGORY);
 		assertThat(result.getType()).isEqualTo(TYPE);
-		assertThat(result.getStatus()).isEqualTo(STATUS);
+		assertThat(result.getStatus()).isEqualTo(APPROVED);
 		assertThat(result.getInvoice()).isNotNull();
 		assertThat(result.getInvoice().getCustomerId()).isEqualTo(CUSTOMER_ID);
 		assertThat(result.getInvoice().getOurReference()).isEqualTo(ANV_NAMN);
@@ -104,9 +106,10 @@ class AccessCardMapperTest {
 
 		// Verification
 		assertThat(result).isNotNull();
+		assertThat(result.getApprovedBy()).isEqualTo(APPROVED_BY);
 		assertThat(result.getCategory()).isEqualTo(CATEGORY);
 		assertThat(result.getType()).isEqualTo(TYPE);
-		assertThat(result.getStatus()).isEqualTo(STATUS);
+		assertThat(result.getStatus()).isEqualTo(APPROVED);
 		assertThat(result.getInvoice()).isNotNull();
 		assertThat(result.getInvoice().getCustomerId()).isEqualTo(CUSTOMER_ID);
 		assertThat(result.getInvoice().getOurReference()).isEqualTo(ANV_NAMN);
