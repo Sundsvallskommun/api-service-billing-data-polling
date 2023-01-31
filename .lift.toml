@@ -1,0 +1,8 @@
+ignoreFiles = """
+target/
+bin/
+"""
+
+ignoreRules = ["UnnecessaryParenthesis", "UnnecessaryFinal" ]
+
+jdkVersion = "17"
