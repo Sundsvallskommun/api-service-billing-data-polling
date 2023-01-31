@@ -15,11 +15,11 @@ public class SmexUtils {
 	/**
 	 * Get the SKReferensNummer that matches the parameter, or null if nothing was found.
 	 *
-	 * @param skReferensNummerList
-	 * @param referenceCode
+	 * 
+	 * 
 	 * @return SKReferensNummer or null if nothing was found.
 	 */
-	public static SKReferensNummer filterByReferenceCode(final List<SKReferensNummer> skReferensNummerList, final Long referenceCode) {
+	public static SKReferensNummer filterByReferenceCode( List<SKReferensNummer> skReferensNummerList,  Long referenceCode) {
 		return Optional.ofNullable(skReferensNummerList).orElse(emptyList()).stream()
 			.filter(Objects::nonNull)
 			.filter(skReferensNummer -> Objects.equals(skReferensNummer.getREFKODID(), referenceCode))

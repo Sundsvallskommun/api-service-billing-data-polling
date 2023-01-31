@@ -18,7 +18,7 @@ public interface AccessCardRepository extends JpaRepository<AccessCardEntity, Lo
 	/**
 	 * Find by flowInstanceId.
 	 *
-	 * @param flowInstanceId
+	 * 
 	 * @return An optional AccessCardEntity.
 	 */
 	Optional<AccessCardEntity> findByFlowInstanceId(String flowInstanceId);
@@ -26,7 +26,7 @@ public interface AccessCardRepository extends JpaRepository<AccessCardEntity, Lo
 	/**
 	 * Find by status list.
 	 *
-	 * @param a List of Status:es to filter on.
+	 * 
 	 * @return A List of AccessCardEntity
 	 */
 	List<AccessCardEntity> findByStatusIn(List<Status> statusList);
@@ -34,7 +34,7 @@ public interface AccessCardRepository extends JpaRepository<AccessCardEntity, Lo
 	/**
 	 * Find the last processed AccessCardEntity.
 	 *
-	 * @param the desired return type.
+	 * 
 	 * @return An optional AccessCardEntity.
 	 */
 	Optional<AccessCardEntity> findFirstByOrderByProcessedDesc();

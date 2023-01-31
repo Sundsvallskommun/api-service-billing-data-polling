@@ -6,26 +6,26 @@ import static java.util.Objects.isNull;
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.PROCESSED;
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.UNPROCESSED;
 
+import java.time.ZoneId;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-
 import se.sundsvall.billingdatapolling.integration.db.model.AccessCardEntity;
 
 public class AccessCardEntityListener {
 
 	@PrePersist
-	void prePersist(final AccessCardEntity entity) {
-		entity.setCreated(now().truncatedTo(MILLIS));
+	void prePersist( AccessCardEntity entity) {
+		entity.setCreated(now(ZoneId.systemDefault()).truncatedTo(MILLIS));
 		entity.setStatus(UNPROCESSED);
 	}
 
 	@PreUpdate
-	void preUpdate(final AccessCardEntity entity) {
-		final var now = now().truncatedTo(MILLIS);
+	void preUpdate( AccessCardEntity entity) {
+		 var now = now(ZoneId.systemDefault()).truncatedTo(MILLIS);
 
 		entity.setModified(now);
 
-		if (PROCESSED.equals(entity.getStatus()) && isNull(entity.getProcessed())) {
+		if (entity.getStatus().equals(PROCESSED) && isNull(entity.getProcessed())) {
 			entity.setProcessed(now);
 		}
 	}

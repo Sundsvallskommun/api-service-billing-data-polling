@@ -15,7 +15,7 @@ public class BillingPreProcessorConfiguration {
 	public static final String CLIENT_ID = "billingpreprocessor";
 
 	@Bean
-	FeignBuilderCustomizer feignBuilderCustomizer(final ClientRegistrationRepository clientRegistrationRepository, final BillingPreProcessorProperties properties) {
+	FeignBuilderCustomizer feignBuilderCustomizer( ClientRegistrationRepository clientRegistrationRepository,  BillingPreProcessorProperties properties) {
 		return FeignMultiCustomizer.create()
 			.withErrorDecoder(new ProblemErrorDecoder(CLIENT_ID))
 			.withRetryableOAuth2InterceptorForClientRegistration(clientRegistrationRepository.findByRegistrationId(CLIENT_ID))

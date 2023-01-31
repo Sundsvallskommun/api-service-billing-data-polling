@@ -24,11 +24,11 @@ public class SchedulerInformation {
 		return enabled;
 	}
 
-	public void setEnabled(final boolean enabled) {
+	public void setEnabled( boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	public SchedulerInformation withEnabled(final boolean enabled) {
+	public SchedulerInformation withEnabled( boolean enabled) {
 		this.enabled = enabled;
 		return this;
 	}
@@ -37,11 +37,11 @@ public class SchedulerInformation {
 		return expression;
 	}
 
-	public void setExpression(final String expression) {
+	public void setExpression( String expression) {
 		this.expression = expression;
 	}
 
-	public SchedulerInformation withExpression(final String expression) {
+	public SchedulerInformation withExpression( String expression) {
 		this.expression = expression;
 		return this;
 	}
@@ -50,11 +50,11 @@ public class SchedulerInformation {
 		return description;
 	}
 
-	public void setDescription(final String description) {
+	public void setDescription( String description) {
 		this.description = description;
 	}
 
-	public SchedulerInformation withDescription(final String description) {
+	public SchedulerInformation withDescription( String description) {
 		this.description = description;
 		return this;
 	}
@@ -65,23 +65,21 @@ public class SchedulerInformation {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals( Object obj) {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
+		
+		if (!(obj instanceof SchedulerInformation)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final var other = (SchedulerInformation) obj;
+		 var other = (SchedulerInformation) obj;
 		return Objects.equals(description, other.description) && enabled == other.enabled && Objects.equals(expression, other.expression);
 	}
 
 	@Override
 	public String toString() {
-		final var builder = new StringBuilder();
+		 var builder = new StringBuilder();
 		builder.append("SchedulerInformation [enabled=").append(enabled).append(", expression=").append(expression).append(", description=").append(description).append("]");
 		return builder.toString();
 	}

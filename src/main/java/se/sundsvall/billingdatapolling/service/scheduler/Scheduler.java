@@ -31,7 +31,7 @@ public class Scheduler {
 	}
 
 	private static Options options() {
-		final var options = new Options();
+		 var options = new Options();
 		options.setVerbose(true);
 		options.setUseJavaEeScheduleExpression(true);
 		options.setLocale(ENGLISH);

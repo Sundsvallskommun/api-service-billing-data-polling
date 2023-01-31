@@ -36,11 +36,11 @@ public class PollingRequest {
 		return fromDate;
 	}
 
-	public void setFromDate(final LocalDate fromDate) {
+	public void setFromDate( LocalDate fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public PollingRequest withFromDate(final LocalDate fromDate) {
+	public PollingRequest withFromDate( LocalDate fromDate) {
 		this.fromDate = fromDate;
 		return this;
 	}
@@ -49,11 +49,11 @@ public class PollingRequest {
 		return toDate;
 	}
 
-	public void setToDate(final LocalDate toDate) {
+	public void setToDate( LocalDate toDate) {
 		this.toDate = toDate;
 	}
 
-	public PollingRequest withToDate(final LocalDate toDate) {
+	public PollingRequest withToDate( LocalDate toDate) {
 		this.toDate = toDate;
 		return this;
 	}
@@ -64,23 +64,21 @@ public class PollingRequest {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals( Object obj) {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
+		
+		if (!(obj instanceof PollingRequest)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final var other = (PollingRequest) obj;
+		 var other = (PollingRequest) obj;
 		return Objects.equals(fromDate, other.fromDate) && Objects.equals(toDate, other.toDate);
 	}
 
 	@Override
 	public String toString() {
-		final var builder = new StringBuilder();
+		 var builder = new StringBuilder();
 		builder.append("PollingRequest [fromDate=").append(fromDate).append(", toDate=").append(toDate).append("]");
 		return builder.toString();
 	}
