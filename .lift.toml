@@ -3,6 +3,6 @@ target/
 bin/
 """
 
-ignoreRules = ["UnnecessaryParenthesis", "UnnecessaryFinal" ]
+ignoreRules = ["UnnecessaryParenthesis", "UnnecessaryFinal", "YodaCondition" ]
 
 jdkVersion = "17"
