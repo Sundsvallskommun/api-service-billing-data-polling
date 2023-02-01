@@ -33,7 +33,7 @@ public class PollingResource {
 	@ApiResponse(responseCode = "400", description = "Bad request", content = @Content(mediaType = APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(oneOf = { Problem.class, ConstraintViolationProblem.class })))
 	@ApiResponse(responseCode = "500", description = "Internal Server error", content = @Content(mediaType = APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = Problem.class)))
 	@ApiResponse(responseCode = "502", description = "Bad Gateway", content = @Content(mediaType = APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = Problem.class)))
-	public ResponseEntity<Void> pollAccessCards(@RequestBody @Valid @NotNull final PollingRequest body) {
+	public ResponseEntity<Void> pollAccessCards(@RequestBody @Valid @NotNull  PollingRequest body) {
 
 		// TODO: Implement this.
 

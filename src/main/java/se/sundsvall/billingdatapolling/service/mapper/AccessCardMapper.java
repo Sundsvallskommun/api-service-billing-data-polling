@@ -44,7 +44,7 @@ public class AccessCardMapper {
 
 	private AccessCardMapper() {}
 
-	public static BillingRecord toBillingRecord(final AccessCardEntity accessCardEntity, final SKReferensNummer skReferensNummer) {
+	public static BillingRecord toBillingRecord( AccessCardEntity accessCardEntity,  SKReferensNummer skReferensNummer) {
 
 		if (anyNull(accessCardEntity, skReferensNummer)) {
 			throw Problem.valueOf(INTERNAL_SERVER_ERROR, ERROR_MESSAGE_OBJECTS_MISSING);
@@ -63,7 +63,7 @@ public class AccessCardMapper {
 				.invoiceRows(toInvoiceRows(accessCardEntity, skReferensNummer)));
 	}
 
-	private static List<InvoiceRow> toInvoiceRows(final AccessCardEntity accessCardEntity, final SKReferensNummer skReferensNummer) {
+	private static List<InvoiceRow> toInvoiceRows( AccessCardEntity accessCardEntity,  SKReferensNummer skReferensNummer) {
 		return List.of(
 			new InvoiceRow()
 				.addDescriptionsItem(format(DESCRIPTIONS_ROW_1, accessCardEntity.getFlowInstanceId()))
@@ -85,7 +85,7 @@ public class AccessCardMapper {
 					.costCenter(COST_CENTER)));
 	}
 
-	private static float toTotalAmount(final AccessCardEntity accessCardEntity) {
+	private static float toTotalAmount( AccessCardEntity accessCardEntity) {
 		if (accessCardEntity.hasPhoto()) {
 			return TOTAL_AMOUNT_WITH_PHOTO;
 		}
@@ -93,14 +93,14 @@ public class AccessCardMapper {
 		return TOTAL_AMOUNT_WITHOUT_PHOTO;
 	}
 
-	private static String toReferenceId(final SKReferensNummer skReferensNummer) {
+	private static String toReferenceId( SKReferensNummer skReferensNummer) {
 		return Optional.ofNullable(skReferensNummer)
 			.map(SKReferensNummer::getREFKODID)
 			.map(Objects::toString)
 			.orElse(null);
 	}
 
-	private static String toOurReference(final SKReferensNummer skReferensNummer) {
+	private static String toOurReference( SKReferensNummer skReferensNummer) {
 		return Optional.ofNullable(skReferensNummer)
 			.map(SKReferensNummer::getANVNAMN)
 			.map(Objects::toString)

@@ -74,11 +74,11 @@ public class AccessCardEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(final Long id) {
+	public void setId( Long id) {
 		this.id = id;
 	}
 
-	public AccessCardEntity withId(final Long id) {
+	public AccessCardEntity withId( Long id) {
 		this.id = id;
 		return this;
 	}
@@ -87,11 +87,11 @@ public class AccessCardEntity implements Serializable {
 		return flowInstanceId;
 	}
 
-	public void setFlowInstanceId(final String flowInstanceId) {
+	public void setFlowInstanceId( String flowInstanceId) {
 		this.flowInstanceId = flowInstanceId;
 	}
 
-	public AccessCardEntity withFlowInstanceId(final String flowInstanceId) {
+	public AccessCardEntity withFlowInstanceId( String flowInstanceId) {
 		this.flowInstanceId = flowInstanceId;
 		return this;
 	}
@@ -100,11 +100,11 @@ public class AccessCardEntity implements Serializable {
 		return referenceCode;
 	}
 
-	public void setReferenceCode(final String referenceCode) {
+	public void setReferenceCode( String referenceCode) {
 		this.referenceCode = referenceCode;
 	}
 
-	public AccessCardEntity withReferenceCode(final String referenceCode) {
+	public AccessCardEntity withReferenceCode( String referenceCode) {
 		this.referenceCode = referenceCode;
 		return this;
 	}
@@ -113,11 +113,11 @@ public class AccessCardEntity implements Serializable {
 		return firstName;
 	}
 
-	public void setFirstName(final String firstName) {
+	public void setFirstName( String firstName) {
 		this.firstName = firstName;
 	}
 
-	public AccessCardEntity withFirstName(final String firstName) {
+	public AccessCardEntity withFirstName( String firstName) {
 		this.firstName = firstName;
 		return this;
 	}
@@ -126,11 +126,11 @@ public class AccessCardEntity implements Serializable {
 		return lastName;
 	}
 
-	public void setLastName(final String lastName) {
+	public void setLastName( String lastName) {
 		this.lastName = lastName;
 	}
 
-	public AccessCardEntity withLastName(final String lastName) {
+	public AccessCardEntity withLastName( String lastName) {
 		this.lastName = lastName;
 		return this;
 	}
@@ -139,11 +139,11 @@ public class AccessCardEntity implements Serializable {
 		return username;
 	}
 
-	public void setUsername(final String username) {
+	public void setUsername( String username) {
 		this.username = username;
 	}
 
-	public AccessCardEntity withUsername(final String username) {
+	public AccessCardEntity withUsername( String username) {
 		this.username = username;
 		return this;
 	}
@@ -152,11 +152,11 @@ public class AccessCardEntity implements Serializable {
 		return created;
 	}
 
-	public void setCreated(final OffsetDateTime created) {
+	public void setCreated( OffsetDateTime created) {
 		this.created = created;
 	}
 
-	public AccessCardEntity withCreated(final OffsetDateTime created) {
+	public AccessCardEntity withCreated( OffsetDateTime created) {
 		this.created = created;
 		return this;
 	}
@@ -165,11 +165,11 @@ public class AccessCardEntity implements Serializable {
 		return modified;
 	}
 
-	public void setModified(final OffsetDateTime modified) {
+	public void setModified( OffsetDateTime modified) {
 		this.modified = modified;
 	}
 
-	public AccessCardEntity withModified(final OffsetDateTime modified) {
+	public AccessCardEntity withModified( OffsetDateTime modified) {
 		this.modified = modified;
 		return this;
 	}
@@ -178,11 +178,11 @@ public class AccessCardEntity implements Serializable {
 		return processed;
 	}
 
-	public void setProcessed(final OffsetDateTime processed) {
+	public void setProcessed( OffsetDateTime processed) {
 		this.processed = processed;
 	}
 
-	public AccessCardEntity withProcessed(final OffsetDateTime processed) {
+	public AccessCardEntity withProcessed( OffsetDateTime processed) {
 		this.processed = processed;
 		return this;
 	}
@@ -191,11 +191,11 @@ public class AccessCardEntity implements Serializable {
 		return status;
 	}
 
-	public void setStatus(final Status status) {
+	public void setStatus( Status status) {
 		this.status = status;
 	}
 
-	public AccessCardEntity withStatus(final Status status) {
+	public AccessCardEntity withStatus( Status status) {
 		this.status = status;
 		return this;
 	}
@@ -204,11 +204,11 @@ public class AccessCardEntity implements Serializable {
 		return photo;
 	}
 
-	public void setPhoto(final Boolean photo) {
+	public void setPhoto( Boolean photo) {
 		this.photo = photo;
 	}
 
-	public AccessCardEntity withPhoto(final Boolean photo) {
+	public AccessCardEntity withPhoto( Boolean photo) {
 		this.photo = photo;
 		return this;
 	}
@@ -223,24 +223,22 @@ public class AccessCardEntity implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals( Object obj) {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
+		
+		if (!(obj instanceof AccessCardEntity)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final var other = (AccessCardEntity) obj;
+		 var other = (AccessCardEntity) obj;
 		return Objects.equals(created, other.created) && Objects.equals(firstName, other.firstName) && Objects.equals(flowInstanceId, other.flowInstanceId) && Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName) && Objects.equals(
 			modified, other.modified) && Objects.equals(photo, other.photo) && Objects.equals(processed, other.processed) && Objects.equals(referenceCode, other.referenceCode) && status == other.status && Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
-		final var builder = new StringBuilder();
+		 var builder = new StringBuilder();
 		builder.append("AccessCardEntity [id=").append(id).append(", flowInstanceId=").append(flowInstanceId).append(", referenceCode=").append(referenceCode).append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(
 			", username=").append(username).append(", created=").append(created).append(", modified=").append(modified).append(", processed=").append(processed).append(", status=").append(status).append(", photo=").append(photo).append("]");
 		return builder.toString();

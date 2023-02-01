@@ -14,7 +14,7 @@ public class OepGetInstanceConfiguration {
 	public static final String CLIENT_ID = "oepgetinstance";
 
 	@Bean
-	FeignBuilderCustomizer feignBuilderCustomizer(final OepGetInstanceProperties properties) {
+	FeignBuilderCustomizer feignBuilderCustomizer( OepGetInstanceProperties properties) {
 		return FeignMultiCustomizer.create()
 			.withRequestInterceptor(new BasicAuthRequestInterceptor(properties.username(), properties.password()))
 			.withRequestTimeoutsInSeconds(properties.connectTimeout(), properties.readTimeout())

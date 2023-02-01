@@ -13,7 +13,7 @@ public class SmexConfiguration {
 	public static final String CLIENT_ID = "smex";
 
 	@Bean
-	FeignBuilderCustomizer feignBuilderCustomizer(final SmexProperties properties) {
+	FeignBuilderCustomizer feignBuilderCustomizer( SmexProperties properties) {
 		return FeignMultiCustomizer.create()
 			.withRequestTimeoutsInSeconds(properties.connectTimeout(), properties.readTimeout())
 			.composeCustomizersToOne();
