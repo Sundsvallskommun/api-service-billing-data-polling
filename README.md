@@ -8,6 +8,7 @@ Sundsvalls kommun
 BillingDataPolling är en tjänst som ansvarar för att hämta data från e-tjänsteflöden och sedan skicka dessa till BillingPreProcessor.
 
 ## Tekniska detaljer
+Testing lift
 
 ### Starta tjänsten
 
