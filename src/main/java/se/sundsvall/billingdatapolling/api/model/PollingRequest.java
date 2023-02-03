@@ -5,7 +5,6 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,13 +17,11 @@ public class PollingRequest {
 
 	@DateTimeFormat(iso = ISO.DATE)
 	@Schema(description = "Polling from date. Format is YYYY-MM-DD.", example = "2023-01-01", requiredMode = REQUIRED)
-	@NotNull
 	@PastOrPresent
 	private LocalDate fromDate;
 
 	@DateTimeFormat(iso = ISO.DATE)
 	@Schema(description = "Polling to date. Format is YYYY-MM-DD.", example = "2023-01-02", requiredMode = REQUIRED)
-	@NotNull
 	@PastOrPresent
 	private LocalDate toDate;
 

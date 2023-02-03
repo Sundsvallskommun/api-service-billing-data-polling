@@ -1,5 +1,6 @@
 package se.sundsvall.billingdatapolling.api;
 
+import static org.mockito.Mockito.verify;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
@@ -8,11 +9,13 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import se.sundsvall.billingdatapolling.Application;
 import se.sundsvall.billingdatapolling.api.model.PollingRequest;
+import se.sundsvall.billingdatapolling.service.scheduler.accesscard.AccessCardScheduleService;
 
 @SpringBootTest(classes = Application.class, webEnvironment = RANDOM_PORT)
 @ActiveProfiles("junit")
@@ -22,6 +25,9 @@ class PollingAccessCardsResourceTest {
 
 	@Autowired
 	private WebTestClient webTestClient;
+
+	@MockBean
+	private AccessCardScheduleService accessCardServiceMock;
 
 	@Test
 	void createPolling() {
@@ -38,8 +44,7 @@ class PollingAccessCardsResourceTest {
 			.exchange()
 			.expectStatus().isNoContent();
 
-		// TODO: Add verification of interaction
 		// Verification
-		// verifyNoInteractions(serviceMock);
+		verify(accessCardServiceMock).execute(request.getFromDate(), request.getToDate());
 	}
 }

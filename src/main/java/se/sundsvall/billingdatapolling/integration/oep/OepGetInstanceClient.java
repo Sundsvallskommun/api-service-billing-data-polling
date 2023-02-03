@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import generated.se.sundsvall.oep.getinstance.FlowInstance;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import se.sundsvall.billingdatapolling.integration.oep.configuration.OepGetInstanceConfiguration;
 
@@ -18,6 +18,22 @@ import se.sundsvall.billingdatapolling.integration.oep.configuration.OepGetInsta
 @CircuitBreaker(name = CLIENT_ID)
 public interface OepGetInstanceClient {
 
+	/**
+	 * Fetch the list of FlowInstance-objects from OEP. Uses API defined in oep-getinstances.yaml
+	 *
+	 * @param fromDate
+	 * @param toDate
+	 * @return
+	 */
 	@GetMapping(path = "/getinstances/family/${integration.oepgetinstance.family-id}", produces = { APPLICATION_XML_VALUE })
-	List<FlowInstance> getInstancesFilteredByDate(@RequestParam("fromDate") LocalDate fromDate, @RequestParam("toDate") LocalDate toDate);
+	List<generated.se.sundsvall.oep.getinstances.FlowInstance> getInstancesFilteredByDate(@RequestParam("fromDate") LocalDate fromDate, @RequestParam("toDate") LocalDate toDate);
+
+	/**
+	 * Fetch the full FlowInstance-object from OEP. Uses API defined in oep-getinstance.yaml
+	 *
+	 * @param flowInstanceId
+	 * @return
+	 */
+	@GetMapping(path = "/getinstance/{flowInstanceId}/xml", produces = { APPLICATION_XML_VALUE })
+	generated.se.sundsvall.oep.getinstance.FlowInstance getInstanceByFlowInstanceId(@PathVariable("flowInstanceId") Integer flowInstanceId);
 }

@@ -19,10 +19,10 @@ public class SmexUtils {
 	 * @param referenceCode
 	 * @return SKReferensNummer or null if nothing was found.
 	 */
-	public static SKReferensNummer filterByReferenceCode(final List<SKReferensNummer> skReferensNummerList, final Long referenceCode) {
+	public static SKReferensNummer filterByReferenceCode(final List<SKReferensNummer> skReferensNummerList, final String referenceCode) {
 		return Optional.ofNullable(skReferensNummerList).orElse(emptyList()).stream()
 			.filter(Objects::nonNull)
-			.filter(skReferensNummer -> Objects.equals(skReferensNummer.getREFKODID(), referenceCode))
+			.filter(skReferensNummer -> Objects.equals(skReferensNummer.getREFKOD(), referenceCode))
 			.findFirst()
 			.orElse(null);
 	}

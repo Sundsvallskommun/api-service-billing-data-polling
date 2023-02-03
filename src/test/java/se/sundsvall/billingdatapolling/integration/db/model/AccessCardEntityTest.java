@@ -47,12 +47,16 @@ class AccessCardEntityTest {
 		final var created = now();
 		final var modified = now().plusDays(1);
 		final var processed = now().plusDays(2);
+		final var orderCreated = now().plusDays(3);
 		final var firstName = "firstName";
 		final var lastName = "lastName";
 		final var id = 1L;
 		final var flowInstanceId = "flowInstanceId";
 		final var referenceCode = "referenceCode";
+		final var referenceCodeId = "referenceCodeId";
+		final var referenceName = "referenceName";
 		final var status = UNPROCESSED;
+		final var statusMessage = "statusMessage";
 		final var username = "username";
 		final var photo = true;
 
@@ -60,12 +64,16 @@ class AccessCardEntityTest {
 			.withCreated(created)
 			.withModified(modified)
 			.withProcessed(processed)
+			.withPosted(orderCreated)
 			.withFirstName(firstName)
 			.withLastName(lastName)
 			.withId(id)
 			.withFlowInstanceId(flowInstanceId)
 			.withReferenceCode(referenceCode)
+			.withReferenceCodeId(referenceCodeId)
+			.withReferenceName(referenceName)
 			.withStatus(status)
+			.withStatusMessage(statusMessage)
 			.withUsername(username)
 			.withPhoto(photo);
 
@@ -73,12 +81,16 @@ class AccessCardEntityTest {
 		assertThat(entity.getCreated()).isEqualTo(created);
 		assertThat(entity.getModified()).isEqualTo(modified);
 		assertThat(entity.getProcessed()).isEqualTo(processed);
+		assertThat(entity.getPosted()).isEqualTo(orderCreated);
 		assertThat(entity.getFirstName()).isEqualTo(firstName);
 		assertThat(entity.getLastName()).isEqualTo(lastName);
 		assertThat(entity.getId()).isEqualTo(id);
 		assertThat(entity.getFlowInstanceId()).isEqualTo(flowInstanceId);
 		assertThat(entity.getReferenceCode()).isEqualTo(referenceCode);
+		assertThat(entity.getReferenceCodeId()).isEqualTo(referenceCodeId);
+		assertThat(entity.getReferenceName()).isEqualTo(referenceName);
 		assertThat(entity.getStatus()).isEqualTo(status);
+		assertThat(entity.getStatusMessage()).isEqualTo(statusMessage);
 		assertThat(entity.getUsername()).isEqualTo(username);
 		assertThat(entity.getPhoto()).isEqualTo(photo);
 	}

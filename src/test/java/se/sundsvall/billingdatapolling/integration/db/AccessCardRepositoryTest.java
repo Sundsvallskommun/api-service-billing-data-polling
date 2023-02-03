@@ -1,7 +1,6 @@
 package se.sundsvall.billingdatapolling.integration.db;
 
 import static java.time.OffsetDateTime.now;
-import static java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
@@ -10,7 +9,6 @@ import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.PROCESSED;
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.UNPROCESSED;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -163,14 +161,13 @@ class AccessCardRepositoryTest {
 	}
 
 	@Test
-	void findFirstByOrderByProcessedDesc() {
+	void findFirstByOrderByPostedDesc() {
 
 		// Call
-		final var result = repository.findFirstByOrderByProcessedDesc().orElseThrow();
+		final var result = repository.findFirstByOrderByPostedDesc().orElseThrow();
 
 		// Verification
-		assertThat(result.getId()).isEqualTo(8L);
-		assertThat(result.getProcessed()).isEqualTo(OffsetDateTime.parse("2023-11-05T13:50:17.767+01:00", ISO_OFFSET_DATE_TIME));
+		assertThat(result.getId()).isEqualTo(6L);
 	}
 
 	private static AccessCardEntity createAccessCardEntity() {

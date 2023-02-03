@@ -32,10 +32,10 @@ public interface AccessCardRepository extends JpaRepository<AccessCardEntity, Lo
 	List<AccessCardEntity> findByStatusIn(List<Status> statusList);
 
 	/**
-	 * Find the last processed AccessCardEntity.
+	 * Find the last posted order among the AccessCardEntity objects.
 	 *
-	 * @param the desired return type.
+	 * @param the AccessCardEntity that was last posted.
 	 * @return An optional AccessCardEntity.
 	 */
-	Optional<AccessCardEntity> findFirstByOrderByProcessedDesc();
+	Optional<AccessCardEntity> findFirstByOrderByPostedDesc();
 }
