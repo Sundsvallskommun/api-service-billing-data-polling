@@ -21,9 +21,9 @@ public interface OepGetInstanceClient {
 	/**
 	 * Fetch the list of FlowInstance-objects from OEP. Uses API defined in oep-getinstances.yaml
 	 *
-	 * @param fromDate
-	 * @param toDate
-	 * @return
+	 * @param fromDate the filter fromDate.
+	 * @param toDate   the filter toDate.
+	 * @return a List of FlowInstance that matches the provided parameters.
 	 */
 	@GetMapping(path = "/getinstances/family/${integration.oepgetinstance.family-id}", produces = { APPLICATION_XML_VALUE })
 	List<generated.se.sundsvall.oep.getinstances.FlowInstance> getInstancesFilteredByDate(@RequestParam("fromDate") LocalDate fromDate, @RequestParam("toDate") LocalDate toDate);
@@ -31,8 +31,8 @@ public interface OepGetInstanceClient {
 	/**
 	 * Fetch the full FlowInstance-object from OEP. Uses API defined in oep-getinstance.yaml
 	 *
-	 * @param flowInstanceId
-	 * @return
+	 * @param flowInstanceId the flowInstanceId of the flowInstance to get.
+	 * @return a FlowInstance that matches the provided parameter.
 	 */
 	@GetMapping(path = "/getinstance/{flowInstanceId}/xml", produces = { APPLICATION_XML_VALUE })
 	generated.se.sundsvall.oep.getinstance.FlowInstance getInstanceByFlowInstanceId(@PathVariable("flowInstanceId") Integer flowInstanceId);

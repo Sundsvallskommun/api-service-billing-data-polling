@@ -15,8 +15,8 @@ public class SmexUtils {
 	/**
 	 * Get the SKReferensNummer that matches the parameter, or null if nothing was found.
 	 *
-	 * @param skReferensNummerList
-	 * @param referenceCode
+	 * @param skReferensNummerList the list of skReferensNummer.
+	 * @param referenceCode        the referenceCode to filter on.
 	 * @return SKReferensNummer or null if nothing was found.
 	 */
 	public static SKReferensNummer filterByReferenceCode(final List<SKReferensNummer> skReferensNummerList, final String referenceCode) {
