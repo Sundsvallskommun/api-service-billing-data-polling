@@ -1,5 +1,6 @@
 package se.sundsvall.billingdatapolling.service.scheduler.accesscard;
 
+import static java.time.LocalDate.now;
 import static java.util.Collections.emptyList;
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.FAILED;
 import static se.sundsvall.billingdatapolling.integration.db.model.enums.Status.PROCESSED;
@@ -28,7 +29,7 @@ import se.sundsvall.billingdatapolling.service.scheduler.AbstractScheduler;
 
 @Service
 @ConfigurationProperties("accesscard.scheduler.cron")
-public class AccessCardScheduleService extends AbstractScheduler {
+public class AccessCardSchedulerService extends AbstractScheduler {
 
 	@Autowired
 	private BillingPreProcessorClient billingPreProcessorClient;
@@ -168,6 +169,6 @@ public class AccessCardScheduleService extends AbstractScheduler {
 	}
 
 	private LocalDate generateToDate() {
-		return LocalDate.now();
+		return now();
 	}
 }

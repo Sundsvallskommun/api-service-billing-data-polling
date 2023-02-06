@@ -1,4 +1,4 @@
-package se.sundsvall.billingdatapolling.service;
+package se.sundsvall.billingdatapolling.service.messaging;
 
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import generated.se.sundsvall.messaging.EmailRequest;
 import se.sundsvall.billingdatapolling.integration.db.model.AccessCardEntity;
 import se.sundsvall.billingdatapolling.integration.messaging.MessagingClient;
-import se.sundsvall.billingdatapolling.service.messaging.MessagingService;
 
 @ExtendWith(MockitoExtension.class)
 class MessagingServiceTest {

@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import se.sundsvall.billingdatapolling.api.model.SchedulerInformation;
-import se.sundsvall.billingdatapolling.service.scheduler.ScheduleService;
+import se.sundsvall.billingdatapolling.service.scheduler.SchedulerService;
 
 @RestController
 @Validated
@@ -29,7 +29,7 @@ import se.sundsvall.billingdatapolling.service.scheduler.ScheduleService;
 public class InformationResource {
 
 	@Autowired
-	private List<ScheduleService> scheduleServiceList;
+	private List<SchedulerService> scheduleServiceList;
 
 	@GetMapping(path = "/schedulers", produces = { APPLICATION_JSON_VALUE })
 	@Operation(summary = "Scheduler information")
@@ -37,7 +37,7 @@ public class InformationResource {
 	@ApiResponse(responseCode = "500", description = "Internal Server error", content = @Content(mediaType = APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = Problem.class)))
 	public ResponseEntity<List<SchedulerInformation>> getSchedulerInformation() {
 		return ok(scheduleServiceList.stream()
-			.map(ScheduleService::getScheduleInformation)
+			.map(SchedulerService::getScheduleInformation)
 			.toList());
 	}
 }

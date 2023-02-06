@@ -9,7 +9,7 @@ import it.burning.cron.CronExpressionDescriptor;
 import it.burning.cron.CronExpressionParser.Options;
 import se.sundsvall.billingdatapolling.api.model.SchedulerInformation;
 
-public abstract class AbstractScheduler implements ScheduleService {
+public abstract class AbstractScheduler implements SchedulerService {
 
 	protected String expression;
 

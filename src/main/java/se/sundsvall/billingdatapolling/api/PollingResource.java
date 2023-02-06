@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import se.sundsvall.billingdatapolling.api.model.PollingRequest;
-import se.sundsvall.billingdatapolling.service.scheduler.accesscard.AccessCardScheduleService;
+import se.sundsvall.billingdatapolling.service.scheduler.accesscard.AccessCardSchedulerService;
 
 @RestController
 @Validated
@@ -30,7 +30,7 @@ import se.sundsvall.billingdatapolling.service.scheduler.accesscard.AccessCardSc
 public class PollingResource {
 
 	@Autowired
-	private AccessCardScheduleService accessCardService;
+	private AccessCardSchedulerService accessCardService;
 
 	@PostMapping(path = "/access-cards", produces = { APPLICATION_PROBLEM_JSON_VALUE })
 	@Operation(summary = "Poll access card orders and performs the necessary processing.")

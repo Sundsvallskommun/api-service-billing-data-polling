@@ -125,7 +125,6 @@ public class AccessCardMapper {
 	}
 
 	private static OffsetDateTime toPosted(final generated.se.sundsvall.oep.getinstance.FlowInstance flowInstance) {
-
 		final var dateTime = Optional.ofNullable(flowInstance)
 			.map(generated.se.sundsvall.oep.getinstance.FlowInstance::getHeader)
 			.map(FlowInstanceHeader::getPosted)

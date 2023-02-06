@@ -21,7 +21,7 @@ import org.zalando.problem.violations.Violation;
 
 import se.sundsvall.billingdatapolling.Application;
 import se.sundsvall.billingdatapolling.api.model.PollingRequest;
-import se.sundsvall.billingdatapolling.service.scheduler.accesscard.AccessCardScheduleService;
+import se.sundsvall.billingdatapolling.service.scheduler.accesscard.AccessCardSchedulerService;
 
 @SpringBootTest(classes = Application.class, webEnvironment = RANDOM_PORT)
 @ActiveProfiles("junit")
@@ -33,7 +33,7 @@ class PollingAccessCardsResourceFailureTest {
 	private WebTestClient webTestClient;
 
 	@MockBean
-	private AccessCardScheduleService accessCardServiceMock;
+	private AccessCardSchedulerService accessCardServiceMock;
 
 	@Test
 	void createPollingWithNullBody() {
