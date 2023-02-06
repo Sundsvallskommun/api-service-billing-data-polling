@@ -9,6 +9,7 @@ import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.to
 import static se.sundsvall.billingdatapolling.service.mapper.AccessCardMapper.toBillingRecord;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import generated.se.sundsvall.oep.getinstance.FlowInstance;
 import se.sundsvall.billingdatapolling.integration.billingpreprocessor.BillingPreProcessorClient;
 import se.sundsvall.billingdatapolling.integration.db.AccessCardRepository;
 import se.sundsvall.billingdatapolling.integration.db.model.AccessCardEntity;
@@ -144,7 +146,7 @@ public class AccessCardSchedulerService extends AbstractScheduler {
 			.toList();
 	}
 
-	private generated.se.sundsvall.oep.getinstance.FlowInstance fetchFlowInstance(final Integer flowInstanceId) {
+	private FlowInstance fetchFlowInstance(final Integer flowInstanceId) {
 		return oepGetInstanceClient.getInstanceByFlowInstanceId(flowInstanceId);
 	}
 
@@ -169,6 +171,6 @@ public class AccessCardSchedulerService extends AbstractScheduler {
 	}
 
 	private LocalDate generateToDate() {
-		return now();
+		return now(ZoneId.systemDefault());
 	}
 }
