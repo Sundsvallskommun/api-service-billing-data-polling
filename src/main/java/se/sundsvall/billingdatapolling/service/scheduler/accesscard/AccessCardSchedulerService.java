@@ -166,7 +166,7 @@ public class AccessCardSchedulerService extends AbstractScheduler {
 			return lastPostedEntity.get().getPosted().minusDays(1).toLocalDate();
 		}
 
-		// No poll date was found. Return a LocalDate from the beginning of time.
+		// No poll date was found. Return a LocalDate from the beginning of time (Unix epoch).
 		return LocalDate.of(1970, 1, 1);
 	}
 

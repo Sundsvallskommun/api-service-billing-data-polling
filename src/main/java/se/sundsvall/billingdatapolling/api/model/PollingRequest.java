@@ -14,12 +14,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class PollingRequest {
 
 	@DateTimeFormat(iso = ISO.DATE)
-	@Schema(description = "Polling from date. Format is YYYY-MM-DD. If not provided, the last posted-date minus 1 day on previously stored orders, will be used.", example = "2023-01-01")
+	@Schema(description = "Polling from date. Format is yyyy-MM-dd. If not provided, the last posted-date (on previously stored orders) minus 1 day will be used. If no previously stored order exists, the Unix epoch will be used.", example = "2023-01-01")
 	@PastOrPresent
 	private LocalDate fromDate;
 
 	@DateTimeFormat(iso = ISO.DATE)
-	@Schema(description = "Polling to date. Format is YYYY-MM-DD. If not provided, 'now' will be used.", example = "2023-01-02")
+	@Schema(description = "Polling to date. Format is yyyy-MM-dd. If not provided, 'now' will be used.", example = "2023-01-02")
 	@PastOrPresent
 	private LocalDate toDate;
 
