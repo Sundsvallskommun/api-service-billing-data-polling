@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.zalando.problem.Problem;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -33,7 +34,7 @@ public class InformationResource {
 
 	@GetMapping(path = "/schedulers", produces = { APPLICATION_JSON_VALUE })
 	@Operation(summary = "Scheduler information")
-	@ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = SchedulerInformation.class)))
+	@ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = SchedulerInformation.class))))
 	@ApiResponse(responseCode = "500", description = "Internal Server error", content = @Content(mediaType = APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = Problem.class)))
 	public ResponseEntity<List<SchedulerInformation>> getSchedulerInformation() {
 		return ok(scheduleServiceList.stream()

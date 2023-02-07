@@ -33,7 +33,7 @@ import se.sundsvall.billingdatapolling.integration.db.model.AccessCardEntity;
 
 public class AccessCardMapper {
 
-	// Constants
+	// Mapping constants
 	static final float TOTAL_AMOUNT_WITH_PHOTO = 200;
 	static final float TOTAL_AMOUNT_WITHOUT_PHOTO = 150;
 	static final Type TYPE = INTERNAL;
@@ -53,6 +53,9 @@ public class AccessCardMapper {
 
 	// Error message
 	static final String ERROR_MESSAGE_OBJECTS_MISSING = "Mapping to BillingRecord not possible. One or more of the input objects was null.";
+
+	// Regular expressions
+	private static final Pattern REFERENCE_CODE_EXTRACTION_PATTERN = Pattern.compile("^(.*)\s-\s(.*)");
 
 	private AccessCardMapper() {}
 
@@ -85,26 +88,26 @@ public class AccessCardMapper {
 		return null;
 	}
 
-	private static String toFirstName(final generated.se.sundsvall.oep.getinstance.FlowInstance flowInstance) {
+	private static Optional<FlowInstanceValuesInternalContactData> toInternalContactData(final generated.se.sundsvall.oep.getinstance.FlowInstance flowInstance) {
 		return Optional.ofNullable(flowInstance)
 			.map(generated.se.sundsvall.oep.getinstance.FlowInstance::getValues)
-			.map(FlowInstanceValues::getInternalContactData)
+			.map(FlowInstanceValues::getInternalContactData);
+	}
+
+	private static String toFirstName(final generated.se.sundsvall.oep.getinstance.FlowInstance flowInstance) {
+		return toInternalContactData(flowInstance)
 			.map(FlowInstanceValuesInternalContactData::getFirstname)
 			.orElse(null);
 	}
 
 	private static String toLastName(final generated.se.sundsvall.oep.getinstance.FlowInstance flowInstance) {
-		return Optional.ofNullable(flowInstance)
-			.map(generated.se.sundsvall.oep.getinstance.FlowInstance::getValues)
-			.map(FlowInstanceValues::getInternalContactData)
+		return toInternalContactData(flowInstance)
 			.map(FlowInstanceValuesInternalContactData::getLastname)
 			.orElse(null);
 	}
 
 	private static String toUsername(final generated.se.sundsvall.oep.getinstance.FlowInstance flowInstance) {
-		return Optional.ofNullable(flowInstance)
-			.map(generated.se.sundsvall.oep.getinstance.FlowInstance::getValues)
-			.map(FlowInstanceValues::getInternalContactData)
+		return toInternalContactData(flowInstance)
 			.map(FlowInstanceValuesInternalContactData::getUsername)
 			.orElse(null);
 	}
@@ -154,8 +157,7 @@ public class AccessCardMapper {
 			.orElse(null);
 
 		if (nonNull(refCodeValue)) {
-			final var pattern = Pattern.compile("^(.*)\s-\s(.*)");
-			final var matcher = pattern.matcher(refCodeValue);
+			final var matcher = REFERENCE_CODE_EXTRACTION_PATTERN.matcher(refCodeValue);
 			if (matcher.find()) {
 				return matcher.group(1);
 			}

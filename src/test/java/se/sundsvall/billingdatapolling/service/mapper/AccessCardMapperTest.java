@@ -188,7 +188,6 @@ class AccessCardMapperTest {
 		assertThat(result.hasPhoto()).isTrue();
 		assertThat(result.getPosted()).isEqualTo(POSTED);
 		assertThat(result.getReferenceCode()).isEqualTo(GET_INSTANCE_EXPECTED_REFERENCE_CODE);
-		assertThat(result.getReferenceCode()).isEqualTo(GET_INSTANCE_EXPECTED_REFERENCE_CODE);
 		assertThat(result.getReferenceCodeId()).isEqualTo(REFKOD_ID.toString());
 		assertThat(result.getReferenceName()).isEqualTo(ANV_NAMN);
 	}

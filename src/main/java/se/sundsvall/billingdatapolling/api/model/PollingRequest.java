@@ -1,7 +1,5 @@
 package se.sundsvall.billingdatapolling.api.model;
 
-import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -16,12 +14,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class PollingRequest {
 
 	@DateTimeFormat(iso = ISO.DATE)
-	@Schema(description = "Polling from date. Format is YYYY-MM-DD.", example = "2023-01-01", requiredMode = REQUIRED)
+	@Schema(description = "Polling from date. Format is YYYY-MM-DD. If not provided, the last posted-date minus 1 day on previously stored orders, will be used.", example = "2023-01-01")
 	@PastOrPresent
 	private LocalDate fromDate;
 
 	@DateTimeFormat(iso = ISO.DATE)
-	@Schema(description = "Polling to date. Format is YYYY-MM-DD.", example = "2023-01-02", requiredMode = REQUIRED)
+	@Schema(description = "Polling to date. Format is YYYY-MM-DD. If not provided, 'now' will be used.", example = "2023-01-02")
 	@PastOrPresent
 	private LocalDate toDate;
 
