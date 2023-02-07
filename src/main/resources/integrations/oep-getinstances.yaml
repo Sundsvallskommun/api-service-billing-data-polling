@@ -1,0 +1,47 @@
+openapi: "3.0.1"
+info:
+  version: "1.0"
+  title: OEP getInstances (reverse engineered API)
+paths:
+  /getinstances/family/{familyId}:
+    get:
+      summary: List all flowInstances for the provided dates
+      tags:
+        - getInstances
+      parameters:
+      - name: familyId
+        in: path
+        description: Family ID
+        required: true
+        schema:
+          type: string
+        example: 170
+      - name: fromDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: The fromDate
+      - name: toDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: The toDate
+      responses:
+        200:
+          description: An array of flowInstances
+          content:
+            application/json:    
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FlowInstance"
+components:
+  schemas:
+    FlowInstance: 
+      type: object
+      properties: 
+        flowInstanceID: 
+          type: integer
+          format: int32

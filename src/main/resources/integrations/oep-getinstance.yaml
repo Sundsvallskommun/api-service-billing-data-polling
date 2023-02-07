@@ -3,106 +3,182 @@ info:
   version: "1.0"
   title: OEP getInstance (reverse engineered API)
 paths:
-  /getinstances/family/{familyId}:
+  /getinstance/{flowInstanceId}/xml:
     get:
-      summary: List all flowInstances for the provided dates
+      summary: Get flowInstance for the provided flowInstanceId
       tags:
         - getInstance
       parameters:
-      - name: familyId
+      - name: flowInstanceId
         in: path
-        description: Family ID
+        description: FlowInstanceID
         required: true
         schema:
           type: string
-        example: 170
-      - name: fromDate
-        in: query
-        schema:
-          type: string
-          format: date
-        description: The fromDate
-      - name: toDate
-        in: query
-        schema:
-          type: string
-          format: date
-        description: The toDate
+        example: 5744
       responses:
         200:
-          description: An array of flowInstances
+          description: A flowInstance
           content:
             application/json:    
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/FlowInstance"
+                $ref: "#/components/schemas/FlowInstance"
 components:
   schemas:
     FlowInstance: 
       type: object
       properties: 
-        flowInstanceID: 
-          type: integer
-          format: int32
-        added: 
-          type: string
-        firstSubmitted: 
-          type: string
-        fullyPopulated: 
-          type: boolean
-        stepID: 
-          type: integer
-          format: int32
-        lastStatusChange: 
-          type: string
-        profileID: 
-          type: integer
-          format: int32
-        userDescription: 
-          type: string
-        managerDescription: 
-          type: string
-        remote: 
-          type: boolean
-        addedInMilliseconds: 
-          type: integer
-          format: int64
-        firstSubmittedInMilliseconds: 
-          type: integer
-          format: int64
-        lastStatusChangeInMilliseconds: 
-          type: integer
-          format: int64
-        poster: 
+        Header: 
           type: object
           properties: 
-            user: 
+            Flow: 
               type: object
               properties: 
-                userID: 
+                FamilyID: 
                   type: integer
                   format: int32
-                username: 
+                Version: 
+                  type: integer
+                  format: int32
+                FlowID: 
+                  type: integer
+                  format: int32
+                Name: 
+                  type: string
+            FlowInstanceID: 
+              type: integer
+              format: int32
+            Status: 
+              type: object
+              properties: 
+                ID: 
+                  type: integer
+                  format: int32
+                Name: 
+                  type: string
+            Poster: 
+              type: object
+              properties: 
+                Firstname: 
+                  type: string
+                Lastname: 
+                  type: string
+                Email: 
+                  type: string
+                ID: 
+                  type: integer
+                  format: int32
+            Owner: 
+              type: object
+              properties: 
+                Firstname: 
+                  type: string
+                Lastname: 
+                  type: string
+                Email: 
+                  type: string
+                ID: 
+                  type: integer
+                  format: int32
+            Posted: 
+              type: string
+            FirstSubmitted: 
+              type: string
+            LastSubmitted: 
+              type: string
+        Values: 
+          type: object
+          properties: 
+            InternalContactData: 
+              type: object
+              properties: 
+                QueryID: 
+                  type: integer
+                  format: int32
+                Name: 
                   type: string
                 firstname: 
                   type: string
                 lastname: 
                   type: string
+                username: 
+                  type: string
                 email: 
                   type: string
-                admin: 
-                  type: boolean
-                enabled: 
-                  type: boolean
-                lastLogin: 
+                phone: 
                   type: string
-                lastLoginInMilliseconds: 
+                organization: 
+                  type: string
+            CaseType: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+            ReferenceCode: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+            AccessCardUser: 
+              type: object
+              properties: 
+                QueryID: 
                   type: integer
-                  format: int64
-                added: 
+                  format: int32
+                Name: 
                   type: string
-                isMutable: 
-                  type: boolean
-                hasFormProvider: 
-                  type: boolean
+                firstname: 
+                  type: string
+                lastname: 
+                  type: string
+                username: 
+                  type: string
+                title: 
+                  type: string
+                organization: 
+                  type: string
+            Pincode: 
+              type: object
+              properties: 
+                QueryID: 
+                  type: integer
+                  format: int32
+                Name: 
+                  type: string
+                Number: 
+                  type: string
+            AccessCardNoPhoto: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+            AccessCardPhoto: 
+              type: object
+              properties: 
+                QueryID: 
+                  type: integer
+                  format: int32
+                Name: 
+                  type: string
+                File: 
+                  type: object
+                  properties: 
+                    ID: 
+                      type: integer
+                      format: int32
+                    Name: 
+                      type: string
+                    Size: 
+                      type: integer
+                      format: int32
+                    EncodedData: 
+                      type: string
+            AccessCardExtraInfo: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+            AccessCardProperties: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+            AccessCardShipTo: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+            AccessCardSendsToAddress: 
+              $ref: "#/components/schemas/FlowInstanceValue"
+    FlowInstanceValue:
+      type: object
+      properties: 
+        QueryID: 
+          type: integer
+          format: int32
+        Name: 
+          type: string
+        Value: 
+          type: string

@@ -7,8 +7,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Scheduler information model")
 public class SchedulerInformation {
 
-	@Schema(description = "Scheduler enabled", example = "false")
-	private boolean enabled;
+	@Schema(description = "Scheduler name", example = "SchedulerService")
+	private String name;
 
 	@Schema(description = "Scheduler expression", example = "0 0 13 * * 7")
 	private String expression;
@@ -20,16 +20,16 @@ public class SchedulerInformation {
 		return new SchedulerInformation();
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public String getName() {
+		return name;
 	}
 
-	public void setEnabled(final boolean enabled) {
-		this.enabled = enabled;
+	public void setName(final String name) {
+		this.name = name;
 	}
 
-	public SchedulerInformation withEnabled(final boolean enabled) {
-		this.enabled = enabled;
+	public SchedulerInformation withName(final String name) {
+		this.name = name;
 		return this;
 	}
 
@@ -61,7 +61,7 @@ public class SchedulerInformation {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, enabled, expression);
+		return Objects.hash(description, expression, name);
 	}
 
 	@Override
@@ -76,13 +76,13 @@ public class SchedulerInformation {
 			return false;
 		}
 		final var other = (SchedulerInformation) obj;
-		return Objects.equals(description, other.description) && enabled == other.enabled && Objects.equals(expression, other.expression);
+		return Objects.equals(description, other.description) && Objects.equals(expression, other.expression) && Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
 		final var builder = new StringBuilder();
-		builder.append("SchedulerInformation [enabled=").append(enabled).append(", expression=").append(expression).append(", description=").append(description).append("]");
+		builder.append("SchedulerInformation [name=").append(name).append(", expression=").append(expression).append(", description=").append(description).append("]");
 		return builder.toString();
 	}
 }

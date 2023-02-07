@@ -23,7 +23,8 @@ import se.sundsvall.billingdatapolling.integration.db.model.enums.Status;
 @Entity
 @Table(name = "access_card",
 	indexes = {
-		@Index(name = "access_card_flow_instance_id_idx", columnList = "flow_instance_id")
+		@Index(name = "access_card_flow_instance_id_idx", columnList = "flow_instance_id"),
+		@Index(name = "access_card_status_idx", columnList = "status")
 	})
 @EntityListeners(AccessCardEntityListener.class)
 public class AccessCardEntity implements Serializable {
@@ -40,6 +41,12 @@ public class AccessCardEntity implements Serializable {
 
 	@Column(name = "reference_code", nullable = false)
 	private String referenceCode;
+
+	@Column(name = "reference_code_id")
+	private String referenceCodeId;
+
+	@Column(name = "reference_name")
+	private String referenceName;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -59,9 +66,15 @@ public class AccessCardEntity implements Serializable {
 	@Column(name = "processed")
 	private OffsetDateTime processed;
 
+	@Column(name = "posted")
+	private OffsetDateTime posted;
+
 	@Column(name = "status", nullable = false)
 	@Enumerated(STRING)
 	private Status status;
+
+	@Column(name = "status_message")
+	private String statusMessage;
 
 	@Column(name = "photo", nullable = false)
 	private Boolean photo;
@@ -106,6 +119,32 @@ public class AccessCardEntity implements Serializable {
 
 	public AccessCardEntity withReferenceCode(final String referenceCode) {
 		this.referenceCode = referenceCode;
+		return this;
+	}
+
+	public String getReferenceCodeId() {
+		return referenceCodeId;
+	}
+
+	public void setReferenceCodeId(final String referenceCodeId) {
+		this.referenceCodeId = referenceCodeId;
+	}
+
+	public AccessCardEntity withReferenceCodeId(final String referenceCodeId) {
+		this.referenceCodeId = referenceCodeId;
+		return this;
+	}
+
+	public String getReferenceName() {
+		return referenceName;
+	}
+
+	public void setReferenceName(final String referenceName) {
+		this.referenceName = referenceName;
+	}
+
+	public AccessCardEntity withReferenceName(final String referenceName) {
+		this.referenceName = referenceName;
 		return this;
 	}
 
@@ -187,6 +226,19 @@ public class AccessCardEntity implements Serializable {
 		return this;
 	}
 
+	public OffsetDateTime getPosted() {
+		return posted;
+	}
+
+	public void setPosted(final OffsetDateTime posted) {
+		this.posted = posted;
+	}
+
+	public AccessCardEntity withPosted(final OffsetDateTime posted) {
+		this.posted = posted;
+		return this;
+	}
+
 	public Status getStatus() {
 		return status;
 	}
@@ -197,6 +249,19 @@ public class AccessCardEntity implements Serializable {
 
 	public AccessCardEntity withStatus(final Status status) {
 		this.status = status;
+		return this;
+	}
+
+	public String getStatusMessage() {
+		return statusMessage;
+	}
+
+	public void setStatusMessage(final String statusMessage) {
+		this.statusMessage = statusMessage;
+	}
+
+	public AccessCardEntity withStatusMessage(final String statusMessage) {
+		this.statusMessage = statusMessage;
 		return this;
 	}
 
@@ -219,7 +284,7 @@ public class AccessCardEntity implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(created, firstName, flowInstanceId, id, lastName, modified, photo, processed, referenceCode, status, username);
+		return Objects.hash(created, firstName, flowInstanceId, id, lastName, modified, posted, photo, processed, referenceCode, referenceCodeId, referenceName, status, statusMessage, username);
 	}
 
 	@Override
@@ -235,14 +300,16 @@ public class AccessCardEntity implements Serializable {
 		}
 		final var other = (AccessCardEntity) obj;
 		return Objects.equals(created, other.created) && Objects.equals(firstName, other.firstName) && Objects.equals(flowInstanceId, other.flowInstanceId) && Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName) && Objects.equals(
-			modified, other.modified) && Objects.equals(photo, other.photo) && Objects.equals(processed, other.processed) && Objects.equals(referenceCode, other.referenceCode) && status == other.status && Objects.equals(username, other.username);
+			modified, other.modified) && Objects.equals(posted, other.posted) && Objects.equals(photo, other.photo) && Objects.equals(processed, other.processed) && Objects.equals(referenceCode, other.referenceCode) && Objects.equals(
+				referenceCodeId, other.referenceCodeId) && Objects.equals(referenceName, other.referenceName) && status == other.status && Objects.equals(statusMessage, other.statusMessage) && Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		final var builder = new StringBuilder();
-		builder.append("AccessCardEntity [id=").append(id).append(", flowInstanceId=").append(flowInstanceId).append(", referenceCode=").append(referenceCode).append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(
-			", username=").append(username).append(", created=").append(created).append(", modified=").append(modified).append(", processed=").append(processed).append(", status=").append(status).append(", photo=").append(photo).append("]");
+		builder.append("AccessCardEntity [id=").append(id).append(", flowInstanceId=").append(flowInstanceId).append(", referenceCode=").append(referenceCode).append(", referenceCodeId=").append(referenceCodeId).append(", referenceName=").append(
+			referenceName).append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", username=").append(username).append(", created=").append(created).append(", modified=").append(modified).append(", processed=").append(
+				processed).append(", posted=").append(posted).append(", status=").append(status).append(", statusMessage=").append(statusMessage).append(", photo=").append(photo).append("]");
 		return builder.toString();
 	}
 }
