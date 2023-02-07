@@ -14,31 +14,31 @@ import generated.se.sundsvall.smex.skreferensnummer.SKReferensNummer;
 class SmexUtilsTest {
 
 	@ParameterizedTest
-	@ValueSource(longs = { 1, 2, 3, 4, 5 })
-	void filterByReferenceCode(final Long id) {
+	@ValueSource(ints = { 1, 2, 3, 4, 5 })
+	void filterByReferenceCode(final int index) {
 
-		final var result = SmexUtils.filterByReferenceCode(createTestList(), id);
+		final var result = SmexUtils.filterByReferenceCode(createTestList(), "RefCode" + index);
 
 		assertThat(result).isNotNull();
-		assertThat(result.getANVNAMN()).isEqualTo("Name" + id);
-		assertThat(result.getBESKRIVNING()).isEqualTo("Description" + id);
-		assertThat(result.getREFKOD()).isEqualTo("RefCode" + id);
-		assertThat(result.getREFKODID()).isEqualTo(id);
+		assertThat(result.getANVNAMN()).isEqualTo("Name" + index);
+		assertThat(result.getBESKRIVNING()).isEqualTo("Description" + index);
+		assertThat(result.getREFKOD()).isEqualTo("RefCode" + index);
+		assertThat(result.getREFKODID()).isEqualTo(index);
 	}
 
 	@Test
 	void filterByReferenceCodeWhenNotFound() {
-		assertThat(SmexUtils.filterByReferenceCode(createTestList(), 666L)).isNull();
+		assertThat(SmexUtils.filterByReferenceCode(createTestList(), "666")).isNull();
 	}
 
 	@Test
 	void filterByReferenceCodeWhenListIsEmpty() {
-		assertThat(SmexUtils.filterByReferenceCode(emptyList(), 1L)).isNull();
+		assertThat(SmexUtils.filterByReferenceCode(emptyList(), "RefCode1")).isNull();
 	}
 
 	@Test
 	void filterByReferenceCodeWhenListIsNull() {
-		assertThat(SmexUtils.filterByReferenceCode(null, 1L)).isNull();
+		assertThat(SmexUtils.filterByReferenceCode(null, "RefCode1")).isNull();
 	}
 
 	private final List<SKReferensNummer> createTestList() {

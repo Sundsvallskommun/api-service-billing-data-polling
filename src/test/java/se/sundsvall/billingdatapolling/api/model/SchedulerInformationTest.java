@@ -31,26 +31,25 @@ class SchedulerInformationTest {
 	@Test
 	void testBuilderMethods() {
 
-		final var enabled = true;
+		final var name = "name";
 		final var expression = "expression";
 		final var description = "description";
 
 		final var schedulerInformation = SchedulerInformation.create()
 			.withDescription(description)
-			.withEnabled(enabled)
+			.withName(name)
 			.withExpression(expression);
 
 		assertThat(schedulerInformation).isNotNull().hasNoNullFieldsOrProperties();
 		assertThat(schedulerInformation.getDescription()).isEqualTo(description);
-		assertThat(schedulerInformation.isEnabled()).isEqualTo(enabled);
+		assertThat(schedulerInformation.getName()).isEqualTo(name);
 		assertThat(schedulerInformation.getExpression()).isEqualTo(expression);
 	}
 
 	@ParameterizedTest
 	@MethodSource("testNoDirtOnCreatedBeanArguments")
 	void testNoDirtOnCreatedBean(final SchedulerInformation schedulerInformation) {
-		assertThat(schedulerInformation).hasAllNullFieldsOrPropertiesExcept("enabled");
-		assertThat(schedulerInformation.isEnabled()).isFalse();
+		assertThat(schedulerInformation).hasAllNullFieldsOrProperties();
 	}
 
 	private static Stream<Arguments> testNoDirtOnCreatedBeanArguments() {
