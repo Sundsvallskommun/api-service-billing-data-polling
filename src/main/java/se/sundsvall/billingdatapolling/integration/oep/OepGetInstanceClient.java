@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import se.sundsvall.billingdatapolling.integration.oep.configuration.OepGetInstanceConfiguration;
 
 @FeignClient(name = CLIENT_ID, url = "${integration.oepgetinstance.url}", configuration = OepGetInstanceConfiguration.class)
-@CircuitBreaker(name = CLIENT_ID)
 public interface OepGetInstanceClient {
 
 	/**
