@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import generated.se.sundsvall.messaging.EmailRequest;
 import generated.se.sundsvall.messaging.MessageResponse;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import se.sundsvall.billingdatapolling.integration.messaging.configuration.MessagingConfiguration;
 
 @FeignClient(name = CLIENT_ID, url = "${integration.messaging.url}", configuration = MessagingConfiguration.class)
-@CircuitBreaker(name = CLIENT_ID)
 public interface MessagingClient {
 
 	/**
